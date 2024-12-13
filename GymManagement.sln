@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Api", "src\API\GymManagement.Api\GymManagement.Api.csproj", "{51764BA0-AD5E-4A26-842D-3F15794E710B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Api", "src\Presentation\GymManagement.Api\GymManagement.Api.csproj", "{51764BA0-AD5E-4A26-842D-3F15794E710B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Contracts", "src\Presentation\GymManagement.Contracts\GymManagement.Contracts.csproj", "{592C3CED-F441-4CC4-A9CC-6C0424795820}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Application", "src\Core\GymManagement.Application\GymManagement.Application.csproj", "{EDDCBA87-E3D0-45DB-B17A-0E75AA8E5485}"
 EndProject
@@ -12,9 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4631C950-C2A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{62390DB3-F405-40DB-A0DF-B9D80B2E9105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Contracts", "src\API\GymManagement.Contracts\GymManagement.Contracts.csproj", "{592C3CED-F441-4CC4-A9CC-6C0424795820}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{A1BD45E3-8F22-4088-8BE3-8B534C4C675C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A1BD45E3-8F22-4088-8BE3-8B534C4C675C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6CCB9C34-F03E-4117-99A3-5587E575A305}"
 EndProject
