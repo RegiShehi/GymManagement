@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Api", "src\GymManagement.Api\GymManagement.Api.csproj", "{51764BA0-AD5E-4A26-842D-3F15794E710B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Application", "src\GymManagement.Application\GymManagement.Application.csproj", "{EDDCBA87-E3D0-45DB-B17A-0E75AA8E5485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Infrastructure", "src\GymManagement.Infrastructure\GymManagement.Infrastructure.csproj", "{BCFCB45E-ADD0-4CF7-B196-C77D06A0B630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Domain", "src\GymManagement.Domain\GymManagement.Domain.csproj", "{95FB62B1-6B54-4465-B610-CA49160416E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51764BA0-AD5E-4A26-842D-3F15794E710B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51764BA0-AD5E-4A26-842D-3F15794E710B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51764BA0-AD5E-4A26-842D-3F15794E710B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51764BA0-AD5E-4A26-842D-3F15794E710B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDDCBA87-E3D0-45DB-B17A-0E75AA8E5485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDCBA87-E3D0-45DB-B17A-0E75AA8E5485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDCBA87-E3D0-45DB-B17A-0E75AA8E5485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDCBA87-E3D0-45DB-B17A-0E75AA8E5485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFCB45E-ADD0-4CF7-B196-C77D06A0B630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFCB45E-ADD0-4CF7-B196-C77D06A0B630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFCB45E-ADD0-4CF7-B196-C77D06A0B630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFCB45E-ADD0-4CF7-B196-C77D06A0B630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FB62B1-6B54-4465-B610-CA49160416E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FB62B1-6B54-4465-B610-CA49160416E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FB62B1-6B54-4465-B610-CA49160416E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FB62B1-6B54-4465-B610-CA49160416E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
