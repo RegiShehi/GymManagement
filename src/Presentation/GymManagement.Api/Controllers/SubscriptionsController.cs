@@ -1,4 +1,4 @@
-﻿using GymManagement.Api.Controllers.Commands.CreateSubscription;
+﻿using GymManagement.Application.Subscriptions.Commands.CreateSubscription;
 using GymManagement.Contracts.Subscriptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

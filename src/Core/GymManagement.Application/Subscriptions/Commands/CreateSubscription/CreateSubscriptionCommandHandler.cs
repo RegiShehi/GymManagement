@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace GymManagement.Api.Controllers.Commands.CreateSubscription;
+namespace GymManagement.Application.Subscriptions.Commands.CreateSubscription;
 
 public class CreateSubscriptionCommandHandler : IRequestHandler<CreateSubscriptionCommand, Guid>
 {

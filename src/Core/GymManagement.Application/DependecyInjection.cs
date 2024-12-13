@@ -2,15 +2,15 @@
 
 namespace GymManagement.Application;
 
-public static class DependecyInjection
+public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddMediatR(options =>
         {
-            options.RegisterServicesFromAssemblyContaining(typeof(DependecyInjection));
+            options.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection));
         });
-        
+
         return services;
     }
 }
