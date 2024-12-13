@@ -7,7 +7,7 @@ public static class DependecyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddScoped<ISubscriptionService, SubscriptionService>();
+        services.AddScoped<ISubscriptionWriteService, SubscriptionWriteService>();
         
         return services;
     }
