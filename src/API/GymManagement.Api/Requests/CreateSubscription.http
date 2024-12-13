@@ -1,0 +1,13 @@
+﻿@host=..
+@adminId=..
+
+### Send request with dynamic variables in request's body
+POST {{host}}/subscriptions
+Content-Type: application/json
+
+{
+  "SubscriptionType": "Free", 
+  "AdminId": "{{adminId}}"
+}
+
+###
