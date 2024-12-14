@@ -14,10 +14,12 @@ public class SubscriptionsController(ISender mediator) : ControllerBase
     {
         var command = new CreateSubscriptionCommand(request.SubscriptionType.ToString(), request.AdminId);
 
-        var subscriptionId = await mediator.Send(command);
+        var createSubscriptionResult = await mediator.Send(command);
 
-        var response = new SubscriptionResponse(subscriptionId, request.SubscriptionType);
-        
-        return Ok(response);
+        return createSubscriptionResult.MatchFirst(
+            guid => Ok(new SubscriptionResponse(guid, request.SubscriptionType)),
+            _ => Problem()
+        );
+
     }
 }
