@@ -6,7 +6,7 @@ namespace GymManagement.Domain.Subscriptions;
 
 public class Subscription
 {
-    private readonly List<Guid> _gymIds = new();
+    private readonly List<Guid> _gymIds = [];
     private readonly int _maxGyms;
 
     public Guid Id { get; private set; }
@@ -38,7 +38,7 @@ public class Subscription
         return Result.Success;
     }
 
-    public int GetMaxGyms()
+    private int GetMaxGyms()
     {
         return SubscriptionType.Name switch
         {

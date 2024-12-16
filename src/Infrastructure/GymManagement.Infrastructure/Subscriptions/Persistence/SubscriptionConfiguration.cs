@@ -1,4 +1,5 @@
 ﻿using GymManagement.Domain.Subscriptions;
+using GymManagement.Infrastructure.Common.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,11 +14,10 @@ public class SubscriptionConfiguration : IEntityTypeConfiguration<Subscription>
         builder.Property(s => s.Id)
             .ValueGeneratedNever();
 
-        // builder.Property("_maxGyms")
-        //     .HasColumnName("MaxGyms");
+        builder.Property("_maxGyms")
+            .HasColumnName("MaxGyms");
 
-        builder.Property("_adminId")
-            .HasColumnName("AdminId");
+        builder.Property(s => s.AdminId);
 
         //Uncomment if you want to save SubscriptionType by value
         // builder.Property(s => s.SubscriptionType)
@@ -37,8 +37,8 @@ public class SubscriptionConfiguration : IEntityTypeConfiguration<Subscription>
                 $"[SubscriptionType] IN ({SubscriptionType.GetAllNames()})");
         });
 
-        // builder.Property<List<Guid>>("_gymIds")
-        //     .HasColumnName("GymIds")
-        //     .HasListOfIdsConverter();
+        builder.Property<List<Guid>>("_gymIds")
+            .HasColumnName("GymIds")
+            .HasListOfIdsConverter();
     }
 }
