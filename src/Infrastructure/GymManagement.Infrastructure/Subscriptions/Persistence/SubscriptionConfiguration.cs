@@ -30,6 +30,13 @@ public class SubscriptionConfiguration : IEntityTypeConfiguration<Subscription>
                 subscriptionType => subscriptionType.Name,
                 value => SubscriptionType.FromName(value, false));
 
+        builder.ToTable("Subscriptions", t =>
+        {
+            t.HasCheckConstraint(
+                "CK_Subscription_SubscriptionType",
+                $"[SubscriptionType] IN ({SubscriptionType.GetAllNames()})");
+        });
+
         // builder.Property<List<Guid>>("_gymIds")
         //     .HasColumnName("GymIds")
         //     .HasListOfIdsConverter();

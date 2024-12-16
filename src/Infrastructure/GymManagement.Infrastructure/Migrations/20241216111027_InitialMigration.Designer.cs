@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(GymManagementDbContext))]
-    [Migration("20241216104047_InitialMigration")]
+    [Migration("20241216111027_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -35,7 +35,10 @@ namespace GymManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subscriptions");
+                    b.ToTable("Subscriptions", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Subscription_SubscriptionType", "[SubscriptionType] IN ('Free', 'Starter', 'Pro')");
+                        });
                 });
 #pragma warning restore 612, 618
         }

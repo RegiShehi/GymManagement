@@ -32,7 +32,10 @@ namespace GymManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subscriptions");
+                    b.ToTable("Subscriptions", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Subscription_SubscriptionType", "[SubscriptionType] IN ('Free', 'Starter', 'Pro')");
+                        });
                 });
 #pragma warning restore 612, 618
         }

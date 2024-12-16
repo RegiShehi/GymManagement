@@ -22,6 +22,7 @@ namespace GymManagement.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Subscriptions", x => x.Id);
+                    table.CheckConstraint("CK_Subscription_SubscriptionType", "[SubscriptionType] IN ('Free', 'Starter', 'Pro')");
                 });
         }
 
