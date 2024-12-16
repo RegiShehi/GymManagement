@@ -18,9 +18,9 @@ public class SubscriptionType : SmartEnum<SubscriptionType>
 
     public static string GetAllNames()
     {
-        var subscriptionTypeValues = string.Join(", ", AllValues
+        var subscriptionTypeNames = string.Join(", ", AllValues
             .Select(type => $"'{type.Name}'"));
 
-        return subscriptionTypeValues;
+        return subscriptionTypeNames;
     }
 }

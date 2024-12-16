@@ -1,7 +1,6 @@
 ﻿@host=http://localhost:5066
 @adminId=11ce0fc8-5f77-4e6c-bf02-a88bab5deda7
 
-### Send request with dynamic variables in request's body
 POST {{host}}/subscriptions
 Content-Type: application/json
 
@@ -9,5 +8,3 @@ Content-Type: application/json
   "SubscriptionType": "Free", 
   "AdminId": "{{adminId}}"
 }
-
-###
