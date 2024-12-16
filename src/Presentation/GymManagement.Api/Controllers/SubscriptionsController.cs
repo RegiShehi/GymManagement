@@ -1,5 +1,6 @@
 ﻿using GymManagement.Api.Extensions;
 using GymManagement.Application.Subscriptions.Commands.CreateSubscription;
+using GymManagement.Application.Subscriptions.Commands.DeleteSubscription;
 using GymManagement.Application.Subscriptions.Queries.GetSubscription;
 using GymManagement.Contracts.Subscriptions;
 using MediatR;
@@ -20,9 +21,7 @@ public class SubscriptionsController(ISender mediator) : ControllerBase
         var getSubscriptionsResult = await mediator.Send(query);
 
         return getSubscriptionsResult.MatchFirst(
-            subscription =>
-                Ok(new SubscriptionResponse(subscription.Id,
-                    Enum.Parse<SubscriptionType>(subscription.SubscriptionType.Name))),
+            subscription => Ok(subscription.ToSubscriptionResponse()),
             error => error.ToProblem());
     }
 
@@ -37,8 +36,22 @@ public class SubscriptionsController(ISender mediator) : ControllerBase
         var createSubscriptionResult = await mediator.Send(command);
 
         return createSubscriptionResult.MatchFirst(
-            subscription => Ok(new SubscriptionResponse(subscription.Id, request.SubscriptionType)),
-            error => error.ToProblem()
-        );
+            subscription => CreatedAtAction(
+                nameof(GetSubscription),
+                new { subscriptionId = subscription.Id },
+                subscription.ToSubscriptionResponse()),
+            error => error.ToProblem());
+    }
+
+    [HttpDelete("{subscriptionId:guid}")]
+    public async Task<IActionResult> DeleteSubscription(Guid subscriptionId)
+    {
+        var command = new DeleteSubscriptionCommand(subscriptionId);
+
+        var createSubscriptionResult = await mediator.Send(command);
+
+        return createSubscriptionResult.Match<IActionResult>(
+            _ => NoContent(),
+            _ => Problem());
     }
 }
