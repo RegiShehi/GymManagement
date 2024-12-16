@@ -10,7 +10,13 @@ public class GymManagementDbContext : DbContext, IUnitOfWork
 
     public GymManagementDbContext(DbContextOptions options) : base(options)
     {
-        
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(GymManagementDbContext).Assembly);
+
+        base.OnModelCreating(modelBuilder);
     }
 
     public async Task CommitChangesAsync()
