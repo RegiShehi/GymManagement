@@ -9,9 +9,8 @@ using DomainSubscriptionType = GymManagement.Domain.Subscriptions.SubscriptionTy
 
 namespace GymManagement.Api.Controllers;
 
-[ApiController]
 [Route("[controller]")]
-public class SubscriptionsController(ISender mediator) : ControllerBase
+public class SubscriptionsController(ISender mediator) : ApiController
 {
     [HttpGet("{subscriptionId:guid}")]
     public async Task<IActionResult> GetSubscription(Guid subscriptionId)
@@ -20,9 +19,9 @@ public class SubscriptionsController(ISender mediator) : ControllerBase
 
         var getSubscriptionsResult = await mediator.Send(query);
 
-        return getSubscriptionsResult.MatchFirst(
+        return getSubscriptionsResult.Match(
             subscription => Ok(subscription.ToSubscriptionResponse()),
-            error => error.ToProblem());
+            Problem);
     }
 
     [HttpPost]
@@ -35,12 +34,12 @@ public class SubscriptionsController(ISender mediator) : ControllerBase
 
         var createSubscriptionResult = await mediator.Send(command);
 
-        return createSubscriptionResult.MatchFirst(
+        return createSubscriptionResult.Match(
             subscription => CreatedAtAction(
                 nameof(GetSubscription),
                 new { subscriptionId = subscription.Id },
                 subscription.ToSubscriptionResponse()),
-            error => error.ToProblem());
+            Problem);
     }
 
     [HttpDelete("{subscriptionId:guid}")]
@@ -52,6 +51,6 @@ public class SubscriptionsController(ISender mediator) : ControllerBase
 
         return createSubscriptionResult.Match<IActionResult>(
             _ => NoContent(),
-            _ => Problem());
+            Problem);
     }
 }

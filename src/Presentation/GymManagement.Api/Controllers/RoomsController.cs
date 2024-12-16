@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GymManagement.Api.Controllers;
 
-[ApiController]
 [Route("gyms/{gymId:guid}/rooms")]
-public class RoomsController(ISender mediator) : ControllerBase
+public class RoomsController(ISender mediator) : ApiController
 {
     [HttpPost]
     public async Task<IActionResult> CreateRoom(
@@ -25,7 +24,7 @@ public class RoomsController(ISender mediator) : ControllerBase
             room => Created(
                 $"rooms/{room.Id}", // todo: add host
                 new RoomResponse(room.Id, room.Name)),
-            _ => Problem());
+            Problem);
     }
 
     [HttpDelete("{roomId:guid}")]
@@ -39,6 +38,6 @@ public class RoomsController(ISender mediator) : ControllerBase
 
         return deleteRoomResult.Match<IActionResult>(
             _ => NoContent(),
-            _ => Problem());
+            Problem);
     }
 }
