@@ -1,6 +1,7 @@
 using GymManagement.Api.Middlewares;
 using GymManagement.Application;
 using GymManagement.Infrastructure;
+using GymManagement.Infrastructure.Common.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+builder.Services.AddHttpContextAccessor();
 builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices();
@@ -19,6 +21,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 app.UseExceptionHandler();
+app.AddInfrastructureMiddleware();
 
 app.UseHttpsRedirection();
 
