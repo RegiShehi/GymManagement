@@ -38,7 +38,7 @@ public class Subscription
         return Result.Success;
     }
 
-    private int GetMaxGyms()
+    public int GetMaxGyms()
     {
         return SubscriptionType.Name switch
         {
