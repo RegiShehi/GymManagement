@@ -52,6 +52,27 @@ public class ValidationBehaviourTests
     }
 
     [Fact]
+    public async Task InvokeBehaviour_WhenValidatorIsNull_ShouldInvokeNextBehaviour()
+    {
+        // arrange
+        var createGymRequest = GymCommandFactory.CreateCreateGymCommand();
+        var gym = GymFactory.CreateGym();
+
+        // create a ValidationBehaviour instance with a null validator
+        var validationBehaviour = new ValidationBehaviour<CreateGymCommand, ErrorOr<Gym>>();
+
+        _mockNextBehaviour.Setup(next => next()).ReturnsAsync(gym);
+
+        // act
+        var result =
+            await validationBehaviour.Handle(createGymRequest, _mockNextBehaviour.Object, CancellationToken.None);
+
+        // assert
+        result.IsError.Should().BeFalse();
+        result.Value.Should().BeEquivalentTo(gym);
+    }
+
+    [Fact]
     public async Task InvokeBehavior_WhenValidatorResultIsNotValid_ShouldReturnListOfErrors()
     {
         // arrange
