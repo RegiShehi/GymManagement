@@ -20,17 +20,16 @@ public class ValidationBehaviourTests
 
         // create request
         var createGymRequest = GymCommandFactory.CreateCreateGymCommand();
+        var gym = GymFactory.CreateGym();
 
         // create next behaviour
         var mockNextBehaviour = new Mock<RequestHandlerDelegate<ErrorOr<Gym>>>();
-        var gym = GymFactory.CreateGym();
-
         mockNextBehaviour.Setup(next => next()).ReturnsAsync(gym);
 
         // create validator (mock)
         var mockValidator = new Mock<IValidator<CreateGymCommand>>();
         mockValidator
-            .Setup(validator => validator.ValidateAsync(createGymRequest, CancellationToken.None))
+            .Setup(v => v.ValidateAsync(createGymRequest, CancellationToken.None))
             .ReturnsAsync(new ValidationResult());
 
         // create validation behaviour (SUT)
