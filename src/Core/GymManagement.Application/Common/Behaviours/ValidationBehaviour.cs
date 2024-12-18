@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 
 namespace GymManagement.Application.Common.Behaviours;
@@ -22,7 +23,8 @@ public class ValidationBehaviour<TRequest, TResponse>(IValidator<TRequest>? vali
         if (validationResult.IsValid)
             return await next();
 
-        var errors = validationResult.Errors.ConvertAll(x => Error.Validation(x.ErrorCode, x.ErrorMessage));
+        var errors = validationResult.Errors.ConvertAll(error =>
+            Error.Validation(error.PropertyName, error.ErrorMessage));
 
         return (dynamic)errors;
     }
