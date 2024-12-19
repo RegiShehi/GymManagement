@@ -34,10 +34,26 @@ public class GymManagementDbContext(
             .SelectMany(e => e)
             .ToList();
 
-        // store events in http context fpr later use
-        AddDomainEventsToOfflineProcessingQueue(domainEvents);
+        // store events in http context for later if user is waiting online
+        if (IsUserWaitingOnline())
+            AddDomainEventsToOfflineProcessingQueue(domainEvents);
+        else
+            await PublishDomainEvents(domainEvents);
 
         await base.SaveChangesAsync();
+    }
+
+    private async Task PublishDomainEvents(List<IDomainEvent> domainEvents)
+    {
+        foreach (var domainEvent in domainEvents)
+        {
+            await publisher.Publish(domainEvent);
+        }
+    }
+
+    private bool IsUserWaitingOnline()
+    {
+        return httpContextAccessor.HttpContext is not null;
     }
 
     private void AddDomainEventsToOfflineProcessingQueue(List<IDomainEvent> domainEvents)
