@@ -7,9 +7,16 @@ namespace GymManagement.Infrastructure.Admins.Persistence;
 
 public class AdminRepository(GymManagementDbContext dbContext) : IAdminRepository
 {
-    public Task<Admin?> GetByIdAsync(Guid adminId)
+    public async Task AddAdminAsync(Admin admin)
     {
-        return dbContext.Admins.FirstOrDefaultAsync(a => a.Id == adminId);
+        await dbContext.Admins.AddAsync(admin);
+    }
+
+    public async Task<Admin?> GetByIdAsync(Guid adminId)
+    {
+        return await dbContext.Admins
+            .AsNoTracking()
+            .FirstOrDefaultAsync(a => a.Id == adminId);
     }
 
     public Task UpdateAsync(Admin admin)

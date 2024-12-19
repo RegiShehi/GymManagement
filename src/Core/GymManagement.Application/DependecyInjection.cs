@@ -6,12 +6,13 @@ namespace GymManagement.Application;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddMediatR(options =>
         {
             options.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection));
             options.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+            options.AddOpenBehavior(typeof(AuthorizationBehaviour<,>));
         });
 
         services.AddValidatorsFromAssemblyContaining(typeof(DependencyInjection));

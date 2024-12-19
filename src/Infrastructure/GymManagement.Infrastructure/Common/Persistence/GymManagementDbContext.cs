@@ -3,6 +3,7 @@ using GymManagement.Domain.Admins;
 using GymManagement.Domain.Common;
 using GymManagement.Domain.Gyms;
 using GymManagement.Domain.Subscriptions;
+using GymManagement.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ public class GymManagementDbContext(
     public DbSet<Subscription> Subscriptions { get; set; }
     public DbSet<Admin> Admins { get; set; }
     public DbSet<Gym> Gyms { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
