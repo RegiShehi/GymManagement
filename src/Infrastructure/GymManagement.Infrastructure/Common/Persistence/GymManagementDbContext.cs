@@ -3,12 +3,16 @@ using GymManagement.Domain.Admins;
 using GymManagement.Domain.Common;
 using GymManagement.Domain.Gyms;
 using GymManagement.Domain.Subscriptions;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymManagement.Infrastructure.Common.Persistence;
 
-public class GymManagementDbContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor)
+public class GymManagementDbContext(
+    DbContextOptions options,
+    IHttpContextAccessor httpContextAccessor,
+    IPublisher publisher)
     : DbContext(options), IUnitOfWork
 {
     public DbSet<Subscription> Subscriptions { get; set; }
